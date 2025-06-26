@@ -4,7 +4,7 @@ import mss
 import win32com.client
 import pygetwindow as gw
 from datetime import datetime
-from PIL import Image
+
 
 # === CONFIGURAÇÕES ===
 destinatario = "luis.alvaro@btgingredients.com; luiz.mizutani@btgingredients.com; steve.gulley@btgingredients.com; vmvargas@btgingredients.com"
@@ -87,13 +87,13 @@ mail = outlook.CreateItem(0)
 
 # mail.To = destinatario
 mail.to = "arturo.garcia@asteritrading.com"
-mail.Subject = "Daily Flash - BTG Ingredients / Asteri Trading " + datetime.now().strftime("%d/%m/%Y")
+mail.Subject = "Daily Flash - BTG Ingredients / Asteri Trading " + datetime.now().strftime("%B %d %Y")
 # mail.CC = copia
 # mail.BCC = "arturo.garcia@asteritrading.com"
 
 mail.HTMLBody = f"""
 <p>Hi!</p>
-<p>Here is the billing for BTG Ingredients and Asteri Trading up to {datetime.now().strftime('%d/%m/%Y')}.</p>
+<p>Here is the billing for BTG Ingredients and Asteri Trading up to {datetime.now().strftime('%B %d %Y')}.</p>
 <p><img src="cid:flash1" width="800"></p>
 <p><img src="cid:flash2" width="800"></p>
 <p>Best regards,<br>Arturo Garcia</p>
