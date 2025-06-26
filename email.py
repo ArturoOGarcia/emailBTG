@@ -114,5 +114,5 @@ excel.Quit()
 mail.Attachments.Add(caminho_excel_1)
 mail.Attachments.Add(caminho_excel_2)
 
-mail.Send()
-print("E-mail enviado com sucesso!")
+mail.Display()
+print("E-mail criado com sucesso!")
