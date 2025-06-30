@@ -35,15 +35,9 @@ time.sleep(1)
 nome_arquivo1 = f"print1_{agora}.png"
 caminho_arquivo1 = os.path.join(os.getcwd(), nome_arquivo1)
 
-area1 = {
-    "left": 520,
-    "top": 330,
-    "width": 660,
-    "height": 550
-}
-
 with mss.mss() as sct:
-    img1 = sct.grab(area1)
+    monitor = sct.monitors[1]  # Usar o monitor principal
+    img1 = sct.grab(monitor)
     mss.tools.to_png(img1.rgb, img1.size, output=caminho_arquivo1)
 
 print(f"Primeiro print salvo: {caminho_arquivo1}")
@@ -69,15 +63,8 @@ time.sleep(1)
 nome_arquivo2 = f"print2_{agora}.png"
 caminho_arquivo2 = os.path.join(os.getcwd(), nome_arquivo2)
 
-area2 = {
-    "left": 100,
-    "top": 305,
-    "width": 870,
-    "height": 640
-}
-
 with mss.mss() as sct:
-    img2 = sct.grab(area2)
+    img2 = sct.grab(monitor)
     mss.tools.to_png(img2.rgb, img2.size, output=caminho_arquivo2)
 
 print(f"Segundo print salvo: {caminho_arquivo2}")
