@@ -10,10 +10,10 @@ from datetime import datetime
 destinatario = "luis.alvaro@btgingredients.com; luiz.mizutani@btgingredients.com; steve.gulley@btgingredients.com; vmvargas@btgingredients.com"
 copia = "ari.nunes@btgingredients.com; jason.medcalf@btgingredients.com"
 agora = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-nome_arquivo1="20250630_BI_CUST_PL.XLSX"
-nome_arquivo2="Faturamento - 30-06.xlsx"
+nome_arquivo1="20250630_BI_CUST_PL"
+nome_arquivo2="Faturamento - 30-06"
 # === 1. ABRIR EXCEL E TIRAR PRIMEIRO PRINT ===
-caminho_excel_1 = r"C:\Users\artur\OneDrive - BTG Ingredients LLC\Daily Flash\{nome_arquivo1}".format(nome_arquivo1=nome_arquivo1)
+caminho_excel_1 = r"C:\Users\artur\OneDrive - BTG Ingredients LLC\Daily Flash\{nome_arquivo1}.xlsx".format(nome_arquivo1=nome_arquivo1)
 
 excel = win32com.client.Dispatch("Excel.Application")
 excel.Visible = True
@@ -49,12 +49,12 @@ with mss.mss() as sct:
 print(f"Primeiro print salvo: {caminho_arquivo1}")
 
 # === 2. ABRIR SEGUNDO EXCEL E TIRAR SEGUNDO PRINT ===
-caminho_excel_2 = r"C:\Users\artur\OneDrive - BTG Ingredients LLC\Daily Flash\{nome_arquivo2}".format(nome_arquivo2=nome_arquivo2)
+caminho_excel_2 = r"C:\Users\artur\OneDrive - BTG Ingredients LLC\Daily Flash\{nome_arquivo2}.xlsx".format(nome_arquivo2=nome_arquivo2)
 
 wb2 = excel.Workbooks.Open(caminho_excel_2)
 ws2 = wb2.Worksheets(1)
 ws2.Activate()
-excel.ActiveWindow.Zoom = 100
+excel.ActiveWindow.Zoom = 80
 
 time.sleep(2)
 for w in gw.getWindowsWithTitle(nome_arquivo2):
