@@ -10,9 +10,10 @@ from datetime import datetime
 destinatario = "luis.alvaro@btgingredients.com; luiz.mizutani@btgingredients.com; steve.gulley@btgingredients.com; vmvargas@btgingredients.com"
 copia = "ari.nunes@btgingredients.com; jason.medcalf@btgingredients.com"
 agora = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-
+nome_arquivo1="20250630_BI_CUST_PL.XLSX"
+nome_arquivo2="Faturamento - 30-06.xlsx"
 # === 1. ABRIR EXCEL E TIRAR PRIMEIRO PRINT ===
-caminho_excel_1 = r"C:\Users\artur\OneDrive - BTG Ingredients LLC\Daily Flash\20250623_BI_CUST_PL.XLSX"
+caminho_excel_1 = r"C:\Users\artur\OneDrive - BTG Ingredients LLC\Daily Flash\{nome_arquivo1}".format(nome_arquivo1=nome_arquivo1)
 
 excel = win32com.client.Dispatch("Excel.Application")
 excel.Visible = True
@@ -22,7 +23,7 @@ ws1.Activate()
 excel.ActiveWindow.Zoom = 70
 
 time.sleep(2)
-for w in gw.getWindowsWithTitle("20250623_BI_CUST_PL"):
+for w in gw.getWindowsWithTitle(nome_arquivo1):
     if w.isMinimized:
         w.restore()
     w.activate()
@@ -48,7 +49,7 @@ with mss.mss() as sct:
 print(f"Primeiro print salvo: {caminho_arquivo1}")
 
 # === 2. ABRIR SEGUNDO EXCEL E TIRAR SEGUNDO PRINT ===
-caminho_excel_2 = r"C:\Users\artur\OneDrive - BTG Ingredients LLC\Daily Flash\Faturamento - 23-06.xlsx"
+caminho_excel_2 = r"C:\Users\artur\OneDrive - BTG Ingredients LLC\Daily Flash\{nome_arquivo2}".format(nome_arquivo2=nome_arquivo2)
 
 wb2 = excel.Workbooks.Open(caminho_excel_2)
 ws2 = wb2.Worksheets(1)
@@ -56,7 +57,7 @@ ws2.Activate()
 excel.ActiveWindow.Zoom = 100
 
 time.sleep(2)
-for w in gw.getWindowsWithTitle("Faturamento - 23-06"):
+for w in gw.getWindowsWithTitle(nome_arquivo2):
     if w.isMinimized:
         w.restore()
     w.activate()
@@ -85,11 +86,10 @@ print(f"Segundo print salvo: {caminho_arquivo2}")
 outlook = win32com.client.Dispatch("Outlook.Application")
 mail = outlook.CreateItem(0)
 
-# mail.To = destinatario
-mail.to = "arturo.garcia@asteritrading.com"
+mail.To = destinatario
 mail.Subject = "Daily Flash - BTG Ingredients / Asteri Trading " + datetime.now().strftime("%B %d %Y")
-# mail.CC = copia
-# mail.BCC = "arturo.garcia@asteritrading.com"
+mail.CC = copia
+mail.BCC = "arturo.garcia@asteritrading.com"
 
 mail.HTMLBody = f"""
 <p>Hi!</p>
